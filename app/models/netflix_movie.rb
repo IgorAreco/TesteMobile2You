@@ -1,0 +1,2 @@
+class NetflixMovie < ApplicationRecord
+end
