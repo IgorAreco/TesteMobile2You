@@ -15,7 +15,11 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
   end
 
   def index
-    @netflix_movies = NetflixMovie.all.order(:year)
+    if params["search"].present?
+      @netflix_movies = NetflixMovie.search(params["search"])
+    else
+      @netflix_movies = NetflixMovie.all.order(:year)
+    end
     render json: @netflix_movies.to_json(:except => [:created_at, :updated_at])
   end
 end
