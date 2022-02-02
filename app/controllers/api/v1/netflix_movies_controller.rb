@@ -3,6 +3,7 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
   def create_by_csv
     CSV.foreach(Rails.root.join('lib/netflix_titles.csv'), headers: true) do |row|
       netflix = NetflixMovie.create(
+                      show_id: row['show_id'],
                       title: row['title'],
                       genre: row['listed_in'],
                       year: row['release_year'].to_i,
@@ -11,7 +12,7 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
                       description: row['description']
                       )
       puts "Created #{netflix.title}"
-      end
+    end
   end
 
   def index
@@ -20,6 +21,6 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
     else
       @netflix_movies = NetflixMovie.all.order(:year)
     end
-    render json: @netflix_movies.to_json(:except => [:created_at, :updated_at])
+    render json: @netflix_movies.to_json(:except => [:show_id, :created_at, :updated_at])
   end
 end

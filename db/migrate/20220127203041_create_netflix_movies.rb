@@ -1,6 +1,7 @@
 class CreateNetflixMovies < ActiveRecord::Migration[6.0]
   def change
     create_table :netflix_movies do |t|
+      t.string :show_id
       t.string :title
       t.string :genre
       t.integer :year

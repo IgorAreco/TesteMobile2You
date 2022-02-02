@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_203041) do
   enable_extension "plpgsql"
 
   create_table "netflix_movies", force: :cascade do |t|
+    t.string "show_id"
     t.string "title"
     t.string "genre"
     t.integer "year"
