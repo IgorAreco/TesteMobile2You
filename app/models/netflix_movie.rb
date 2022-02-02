@@ -1,6 +1,6 @@
 class NetflixMovie < ApplicationRecord
-  validates :show_id, uniqueness: true
   include PgSearch::Model
+  validates :show_id, uniqueness: true
   pg_search_scope :search,
     against: [ :title, :genre, :year, :country ],
     using: {

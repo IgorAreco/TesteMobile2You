@@ -10,8 +10,7 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
                       country: row['country'],
                       published_at: row['date_added'],
                       description: row['description']
-                      )
-      puts "Created #{netflix.title}"
+                    )
     end
   end
 
@@ -21,6 +20,6 @@ class Api::V1::NetflixMoviesController < Api::V1::BaseController
     else
       @netflix_movies = NetflixMovie.all.order(:year)
     end
-    render json: @netflix_movies.to_json(:except => [:show_id, :created_at, :updated_at])
+    # render json: @netflix_movies.to_json( except: [:show_id, :created_at, :updated_at]), status: :ok
   end
 end
